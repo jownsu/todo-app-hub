@@ -15,7 +15,7 @@
 		<div class="container">
 			<header>
 				<h1 class="app_name">Todo</h1>
-				<button type="button"><span class="moon_icon"></span></button>
+				<button type="button" id="theme_btn"><span class="moon_icon"></span></button>
 			</header>
 			<form id="todo_form">
 				<div class="todo_input">
@@ -23,70 +23,34 @@
 						<input id="input_checkbox" type="checkbox">
 						<span class="checkmark"></span>
 					</label>
-					<input type="text">
+					<input type="text" name="new_todo_input">
 				</div>
 				<div class="todo_container">
-					<div class="todo_item">
-						<label for="input_checkbox_1" class="checkbox">
-							<input id="input_checkbox_1" type="checkbox">
-							<span class="checkmark"></span>
-							<p>Complete online JavaScript course</p>
-						</label>
-						<button type="button"><span class="x_icon"></span></button>
-					</div>
-					<div class="todo_item">
-						<label for="input_checkbox_2" class="checkbox">
-							<input id="input_checkbox_2" type="checkbox">
-							<span class="checkmark"></span>
-							<p>Jog around the park 3x</p>
-						</label>
-						<button type="button"><span class="x_icon"></span></button>
-					</div>
-					<div class="todo_item">
-						<label for="input_checkbox_3" class="checkbox">
-							<input id="input_checkbox_3" type="checkbox">
-							<span class="checkmark"></span>
-							<p>10 minutes meditation</p>
-						</label>
-						<button type="button"><span class="x_icon"></span></button>
-					</div>
-					<div class="todo_item">
-						<label for="input_checkbox_4" class="checkbox">
-							<input id="input_checkbox_4" type="checkbox">
-							<span class="checkmark"></span>
-							<p>Read for 1 hour</p>
-						</label>
-						<button type="button"><span class="x_icon"></span></button>
-					</div>
-					<div class="todo_item">
-						<label for="input_checkbox_5" class="checkbox">
-							<input id="input_checkbox_5" type="checkbox">
-							<span class="checkmark"></span>
-							<p>Pick up groceries</p>
-						</label>
-						<button type="button"><span class="x_icon"></span></button>
-					</div>
-					<div class="todo_item">
-						<label for="input_checkbox_6" class="checkbox">
-							<input id="input_checkbox_6" type="checkbox">
-							<span class="checkmark"></span>
-							<p>Complete Todo App on Frontend Mentor</p>
-						</label>
-						<button type="button"><span class="x_icon"></span></button>
-					</div>
 					<div class="todo_footer">
-						<p>5 items left</p>
+						<p id="todo_length">0 items left</p>
 		
 						<div class="filters">
-							<button type="button" class="active">All</button>
-							<button type="button">Active</button>
-							<button type="button">Completed</button>
+							<button type="button" id="filter_all_btn" class="active">All</button>
+							<button type="button" id="filter_active_btn">Active</button>
+							<button type="button" id="filter_completed_btn">Completed</button>
 						</div>
 		
-						<button type="button" class="clear_btn">Clear Completed</button>
+						<button type="button" id="clear_btn">Clear Completed</button>
 					</div>
 				</div>
 			</form>
+		</div>
+
+		<!-- TO BE CLONE -->
+		<div class="hide" id="clone_container">
+			<div class="todo_item">
+				<label for="" class="checkbox">
+					<input id="" type="checkbox">
+					<span class="checkmark"></span>
+					<p></p>
+				</label>
+				<button class="delete_btn" type="button"><span class="x_icon"></span></button>
+			</div>
 		</div>
 	</body>
 </html>
