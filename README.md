@@ -18,10 +18,12 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshots/1.png)
-![](./screenshots/2.png)
-![](./screenshots/3.png)
-![](./screenshots/4.png)
+<div style="display:flex">
+	<img src="./screenshots/1.png" style="width:500px;"/>
+	<img src="./screenshots/2.png" style="width:500px;"/>
+	<img src="./screenshots/3.png" style="width:250px;"/>
+	<img src="./screenshots/4.png" style="width:250px;"/>
+</div>
 
 ### Links
 
