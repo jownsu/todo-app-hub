@@ -143,6 +143,16 @@ body{
                     button{
                         display: block;
                     }
+
+                    &:hover{
+                        .checkmark{
+                            &::before{
+                                height: calc(100% - 3px);
+                                width: calc(100% - 3px);
+                                border: none;
+                            }
+                        }
+                    }
                 }
     
                 .delete_btn{
@@ -289,9 +299,9 @@ body{
 
         &:checked{
             ~ .checkmark{
-                background-image: url("/images/icon-check.svg"), linear-gradient(90deg, rgba(85,221,255,1) 0%, rgba(192,88,243,1) 100%);
-                background-repeat: no-repeat;
-                background-position: center;
+                &::before{
+                    display: none;
+                }
             }
         }
     }
@@ -300,10 +310,33 @@ body{
         height: 24px;
         width: 24px;
         display: block;
-        padding: 10px;
         border-radius: 50%;
-        border: 1px solid #E3E4F1;
         cursor: pointer;
+        background-image: url("/images/icon-check.svg"), linear-gradient(90deg, rgba(85,221,255,1) 0%, rgba(192,88,243,1) 100%);
+        background-repeat: no-repeat;
+        background-position: center;
+        position: relative;
+
+        &::before{
+            content: "";
+            height: calc(100% + 1px);
+            width: calc(100% + 1px);
+            border-radius: 50%;
+            background: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid #E3E4F1;
+        }
+
+        &:hover{
+            &::before{
+                height: calc(100% - 3px);
+                width: calc(100% - 3px);
+                border: none;
+            }
+        }
 
         @media only screen and (max-width: 700px){
             height: 20px;
@@ -391,7 +424,10 @@ body.dark_mode{
 
     .checkbox{
         .checkmark{
-            border-color: #393A4B;
+            &::before{
+                background: #25273d;
+                // border: 1px solid #393A4B;
+            }
         }
     }
 }
