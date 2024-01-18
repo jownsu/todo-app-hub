@@ -116,68 +116,72 @@ body{
         border-radius: 5px;
         box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.50);
 
-        .todo_item{
-            padding: 20px 24px;
-            display: flex;
-            justify-content: space-between;
-
-            @media only screen and (max-width: 700px){
-                padding: 16px 20px;
-            }
-
-            &:hover{
-                button{
-                    display: block;
-                }
-            }
-
-            .delete_btn{
-                padding: 0;
-                border: none;
-                outline: none;
-                background: none;
-                display: none;
-                cursor: pointer;
-
-                .x_icon{
-                    display: block;
-                    height: 18px;
-                    width: 18px;
-                    background: url("/images/icon-cross.svg");
-                }
-            }
-
-            &:not(:last-of-type){
-                border-bottom: 1px solid #E3E4F1;
-            }
-
-            .checkbox{
+        #todo_list{
+            padding: 0;
+            margin: 0;
+            .todo_item{
+                padding: 20px 24px;
                 display: flex;
-                align-items: center;
-                gap: 23px;
-                flex: 1;
-                cursor: pointer;
-
+                justify-content: space-between;
+                border-bottom: 1px solid #E3E4F1;
+    
                 @media only screen and (max-width: 700px){
-                    gap: 11px;
+                    padding: 16px 20px;
                 }
-
-                input[type="checkbox"]:checked ~ p {
-                    text-decoration: line-through;
-                    color: #D1D2DA;
-                }
-
-                p{
-                    color: #494C6B;
-                    font-size: 18px;
-                    letter-spacing: -.25px;
-                    flex: 1;
-                    cursor: pointer;
-
-                    @media only screen and (max-width: 700px){
-                        font-size: 12px;
+    
+                &:hover{
+                    button{
+                        display: block;
                     }
                 }
+    
+                .delete_btn{
+                    padding: 0;
+                    border: none;
+                    outline: none;
+                    background: none;
+                    display: none;
+                    cursor: pointer;
+    
+                    .x_icon{
+                        display: block;
+                        height: 18px;
+                        width: 18px;
+                        background: url("/images/icon-cross.svg");
+                    }
+                }
+    
+                .checkbox{
+                    display: flex;
+                    align-items: center;
+                    gap: 23px;
+                    flex: 1;
+                    cursor: pointer;
+    
+                    @media only screen and (max-width: 700px){
+                        gap: 11px;
+                    }
+    
+                    input[type="checkbox"]:checked ~ p {
+                        text-decoration: line-through;
+                        color: #D1D2DA;
+                    }
+    
+                    p{
+                        color: #494C6B;
+                        font-size: 18px;
+                        letter-spacing: -.25px;
+                        flex: 1;
+                        cursor: pointer;
+    
+                        @media only screen and (max-width: 700px){
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+            .ghost {
+                border: 2px dashed #25273d !important;
             }
         }
 
@@ -255,6 +259,18 @@ body{
             }
         }
     }
+
+    .drag_tip{
+        text-align: center;
+        color: #9495A5;
+        font-size: 14px;
+        letter-spacing: -0.194px;
+        margin-top: 45px;
+
+        @media only screen and (max-width: 700px){
+            margin-top: 97px;
+        }
+    }
 }
 
 .checkbox{
@@ -311,17 +327,22 @@ body.dark_mode{
             background: #25273d;
             box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.50);
 
-            .todo_item{
-                border-color: #393A4B;
-
-                .checkbox{
-                    input[type="checkbox"]:checked ~ p {
-                        color: #4D5067;
+            #todo_list{
+                .todo_item{
+                    border-color: #393A4B;
+    
+                    .checkbox{
+                        input[type="checkbox"]:checked ~ p {
+                            color: #4D5067;
+                        }
+    
+                        p{
+                            color: #C8CBE7;
+                        }
                     }
-
-                    p{
-                        color: #C8CBE7;
-                    }
+                }
+                .ghost{
+                    border-color: #E3E4F1 !important;
                 }
             }
 
@@ -331,6 +352,9 @@ body.dark_mode{
                 }
 
                 .filters{
+                    background: #25273d;
+                    box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.50);
+
                     button{
                         color: #5B5E7E;
 

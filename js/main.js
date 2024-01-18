@@ -1,4 +1,5 @@
 import "../styles/main.scss";
+import Sortable from "sortablejs";
 let todo_items = [];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -15,7 +16,34 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("filter_all_btn").addEventListener("click", handleAllFilter);
     document.getElementById("filter_active_btn").addEventListener("click", handleActiveFilter);
     document.getElementById("filter_completed_btn").addEventListener("click", handleCompletedFilter);
+
+    const todo_list = document.getElementById("todo_list");
+    Sortable.create(todo_list, {
+        onUpdate: handleDragSort,
+        ghostClass: "ghost"
+    });
 });
+
+/* Will update the todo_items based on the dom after drag and drop */
+const handleDragSort = (event) => {
+    let todo_container = event.from;
+    let todo_items = todo_container.querySelectorAll(".todo_item");
+
+    let updated_todo_items = [];
+
+    for(let index = 0; index < todo_items.length; index++){
+        const todo_item = todo_items[index];
+        
+        updated_todo_items.push({
+            id: parseInt(todo_item.getAttribute("data-id")),
+            content: todo_item.querySelector("p").textContent,
+            is_done: todo_item.querySelector("input[type='checkbox']").checked
+        });
+    }
+
+    todo_items = updated_todo_items;
+    updateLocalStorage(todo_items); 
+}
 
 /* Will show all completed todo item */
 const handleAllFilter = (event) => {
@@ -64,7 +92,8 @@ const removeAllTodoItems = () => {
 const handleClearCompleted = () => {
     const todo_item_elements = document.querySelectorAll("#todo_form .todo_item");
     todo_items = todo_items.filter(item => !item.is_done);
-    updateLocalStorage();
+    updateLocalStorage(todo_items);
+    updateTodoCount();
 
     /* Will loop through the todo items and remove if it is marked as done. */
     for (let index = 0; index < todo_item_elements.length; index++){
@@ -90,7 +119,7 @@ const handleSubmitTodoForm = (event) => {
 
     addTodoItem(new_todo_item, true);
     todo_items.unshift(new_todo_item);
-    updateLocalStorage();
+    updateLocalStorage(todo_items);
     updateTodoCount();
     new_todo_input.value = "";
 }
@@ -112,7 +141,7 @@ const handleDeleteTodoItem = (event) => {
     const selected_todo_item = event.target.closest(".todo_item");
     todo_items = todo_items.filter(item => item.id != selected_todo_item.getAttribute("data-id"));
     selected_todo_item.remove();
-    updateLocalStorage();
+    updateLocalStorage(todo_items);
     updateTodoCount();
 }
 
@@ -131,7 +160,7 @@ const handleUpdateTodoStatus = (event) => {
         return item;
     });
 
-    updateLocalStorage();
+    updateLocalStorage(todo_items);
 }
 
 /* Will handle the toggling of dark or light mode. */
@@ -186,7 +215,7 @@ const setTodoItems = (todo_items = []) => {
 
 /* Will handle the adding of todo item into the dom. */
 const addTodoItem = ({id, content, is_done}, is_prepend = false) => {
-    const todo_container = document.querySelector("#todo_form .todo_container");
+    const todo_list = document.querySelector("#todo_list");
     const cloned_todo_item = document.querySelector("#clone_container .todo_item").cloneNode(true);
 
     cloned_todo_item.setAttribute("data-id", id);
@@ -202,10 +231,10 @@ const addTodoItem = ({id, content, is_done}, is_prepend = false) => {
     
     /* Will the the todo item to the first on the list if it is newly added. */
     if(is_prepend){
-        todo_container.prepend(cloned_todo_item);
+        todo_list.prepend(cloned_todo_item);
     }
     else{
-        todo_container.insertBefore(cloned_todo_item, todo_container.lastElementChild);
+        todo_list.append(cloned_todo_item);
     }
 }
 
@@ -251,7 +280,7 @@ const setDefaultTodoItems = () => {
 }
 
 /* Will update the value of todo_items in localstorage. */
-const updateLocalStorage = () => {
+const updateLocalStorage = (todo_items) => {
     localStorage.setItem("todo_items", JSON.stringify(todo_items));
 }
 
