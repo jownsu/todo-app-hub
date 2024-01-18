@@ -18,15 +18,11 @@ Users should be able to:
 
 ### Screenshot
 
-<div style="display:flex">
-	<div>
-		<img src="./screenshots/1.png" style="width:500px;"/>
-		<img src="./screenshots/2.png" style="width:500px;"/>
-	</div>
-	<div>
-		<img src="./screenshots/3.png" style="width:250px;"/>
-		<img src="./screenshots/4.png" style="width:250px;"/>
-	</div>
+<div style="display:flex;">
+	<img src="./screenshots/1.png" />
+	<img src="./screenshots/2.png" />
+	<img src="./screenshots/3.png" width=300/>
+	<img src="./screenshots/4.png" width=300/>
 </div>
 
 ### Links
