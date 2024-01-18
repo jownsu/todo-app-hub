@@ -66,6 +66,11 @@ body{
             height: 30px;
             width: 30px;
             cursor: pointer;
+
+            @media only screen and (max-width: 700px){
+                height: 20px;
+                width: 20px;
+            }
     
             .moon_icon,
             .sun_icon{
@@ -75,11 +80,11 @@ body{
             }
 
             .moon_icon{
-                background: url("/images/icon-moon.svg") no-repeat;
+                background: url("/images/icon-moon.svg") no-repeat center / cover;
             }
 
             .sun_icon{
-                background: url("/images/icon-sun.svg") no-repeat;
+                background: url("/images/icon-sun.svg") no-repeat center / cover;
             }
         }
     }
